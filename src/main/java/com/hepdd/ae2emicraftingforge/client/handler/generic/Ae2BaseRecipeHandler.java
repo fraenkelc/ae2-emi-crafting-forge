@@ -11,6 +11,7 @@ import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.CraftingTermMenu;
+import com.hepdd.ae2emicraftingforge.client.config.Ae2EmiConfig;
 import com.hepdd.ae2emicraftingforge.client.helper.InventoryUtils;
 import com.hepdd.ae2emicraftingforge.client.helper.rendering.Result;
 import dev.emi.emi.api.recipe.EmiPlayerInventory;
@@ -42,9 +43,9 @@ public abstract class Ae2BaseRecipeHandler<T extends AEBaseMenu> implements EmiR
 
     @Override
     public EmiPlayerInventory getInventory(AbstractContainerScreen<T> screen) {
-        // if (!Ae2EmiMod.cfg.bomsync) {
-        // return new EmiPlayerInventory(List.of());
-        // }
+        if (!Ae2EmiConfig.BOMSYNC.get()) {
+            return new EmiPlayerInventory(List.of());
+        }
 
         T handler = screen.getMenu();
         if (handler instanceof MEStorageMenu menu) {
@@ -92,13 +93,11 @@ public abstract class Ae2BaseRecipeHandler<T extends AEBaseMenu> implements EmiR
             return Result.createNotApplicable();
         }
 
-        var recipe = context.getScreenHandler()
+        Recipe<?> recipe = context.getScreenHandler()
                 .getPlayer()
                 .level()
                 .getRecipeManager()
-                .getRecipes().stream()
-                .filter((a) -> a.getId() == emiRecipe.getId())
-                .findFirst()
+                .byKey(emiRecipe.getId())
                 .orElse(null);
 
         T menu = containerClass.cast(context.getScreenHandler());
@@ -117,7 +116,7 @@ public abstract class Ae2BaseRecipeHandler<T extends AEBaseMenu> implements EmiR
 
     @Override
     public boolean canCraft(EmiRecipe recipe, EmiCraftContext<T> context) {
-        if (context.getType() == EmiCraftContext.Type.FILL_BUTTON) {
+        if (Ae2EmiConfig.ALWAYSSYNC.get() || context.getType() == EmiCraftContext.Type.FILL_BUTTON) {
             return transferRecipe(recipe, context, false).canCraft();
         } else {
             return context.getInventory().canCraft(recipe);

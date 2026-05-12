@@ -46,4 +46,11 @@ repositories {
     maven {
         url = "https://maven.enjarai.dev/mirrors"
     }
+    maven {
+        name = "GTCEu Maven"
+        url = "https://maven.gtceu.com/"
+        content {
+            includeGroup 'appeng'
+        }
+    }
 }

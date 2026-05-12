@@ -4,10 +4,7 @@
   "package": "com.hepdd.ae2emicraftingforge.client.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [],
-  "client": [
-    "AE2SearchMixin",
-    "AE2TerminalScreenMixin"
-  ],
+  "client": ["AppEngEmiPluginMixin"],
   "server": [],
   "injectors": {
     "defaultRequire": 1

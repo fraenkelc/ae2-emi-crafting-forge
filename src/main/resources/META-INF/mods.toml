@@ -2,9 +2,12 @@ modLoader="javafml"
 loaderVersion="[47,)"
 license="MIT"
 
+[[mixins]]
+config="ae2emicraftingforge.mixins.json"
+
 [[mods]]
 modId="ae2emicraftingforge"
-version="1.0.0"
+version="1.1.0-monifactory"
 displayName="AE2 EMI Crafting Forge"
 credits="Thanks to the AE2 and EMI teams for their amazing mods"
 authors="liansishen"
@@ -15,7 +18,7 @@ Adds EMI crafting integration for Applied Energistics 2.
 [[dependencies.ae2emicraftingforge]]
     modId="forge"
     mandatory=true
-    versionRange="[47.4.1,)"
+    versionRange="[47.4.13,)"
     ordering="NONE"
     side="CLIENT"
 
@@ -36,7 +39,7 @@ Adds EMI crafting integration for Applied Energistics 2.
 [[dependencies.ae2emicraftingforge]]
     modId="ae2"
     mandatory=true
-    versionRange="[15.4.2,)"
+    versionRange="[15.4.10,)"
     ordering="NONE"
     side="CLIENT"
 
