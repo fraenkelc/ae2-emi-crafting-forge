@@ -7,7 +7,7 @@ config="ae2emicraftingforge.mixins.json"
 
 [[mods]]
 modId="ae2emicraftingforge"
-version="1.1.0-monifactory"
+version="1.2.0-monifactory"
 displayName="AE2 EMI Crafting Forge"
 credits="Thanks to the AE2 and EMI teams for their amazing mods"
 authors="liansishen"
