@@ -10,6 +10,7 @@ import dev.emi.emi.api.recipe.handler.EmiRecipeHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -18,7 +19,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = AppEngEmiPlugin.class, remap = false)
 public abstract class AppEngEmiPluginMixin {
 
-    private static final Logger LOGGER = LogManager.getLogger("ae2emicrafting/mixin");
+    @Unique
+    private static final Logger ae2emicraftingforge$LOGGER = LogManager.getLogger("ae2emicrafting/mixin");
 
     @Redirect(
               method = "register",
@@ -29,10 +31,10 @@ public abstract class AppEngEmiPluginMixin {
     private <T extends AbstractContainerMenu> void suppressDefaultCraftingHandlers(
                                                                                    EmiRegistry registry, MenuType<T> type, EmiRecipeHandler<T> handler) {
         if (handler instanceof EmiUseCraftingRecipeHandler) {
-            LOGGER.info("[AppEngEmiPluginMixin] suppressed EmiUseCraftingRecipeHandler for {}", type);
+            ae2emicraftingforge$LOGGER.debug("[AppEngEmiPluginMixin] suppressed EmiUseCraftingRecipeHandler for {}", type);
             return;
         }
-        LOGGER.info("[AppEngEmiPluginMixin] allowing addRecipeHandler for {} with {}", type, handler.getClass().getSimpleName());
+        ae2emicraftingforge$LOGGER.debug("[AppEngEmiPluginMixin] allowing addRecipeHandler for {} with {}", type, handler.getClass().getSimpleName());
         registry.addRecipeHandler(type, handler);
     }
 }

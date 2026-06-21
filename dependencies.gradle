@@ -9,7 +9,7 @@ dependencies {
     modImplementation("org.appliedenergistics:guideme:20.1.7")
 
     // ae2wtlib
-    modRuntimeOnly("curse.maven:applied-energistics-2-wireless-terminals-459929:5217955")
+    modImplementation("curse.maven:applied-energistics-2-wireless-terminals-459929:5217955")
 
     // ae2wtlib runtime dependencies
     modRuntimeOnly("curse.maven:jade-324717:6106101")

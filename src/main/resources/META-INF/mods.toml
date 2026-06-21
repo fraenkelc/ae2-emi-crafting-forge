@@ -43,3 +43,10 @@ Adds EMI crafting integration for Applied Energistics 2.
     ordering="NONE"
     side="CLIENT"
 
+[[dependencies.ae2emicraftingforge]]
+    modId="ae2wtlib"
+    mandatory=false
+    versionRange="[15.2.3,)"
+    ordering="NONE"
+    side="CLIENT"
+
